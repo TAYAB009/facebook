@@ -26,9 +26,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool showPassword = false;
 
-  // void showHidePassword() {
-
-  // }
+  TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,37 +40,45 @@ class _HomePageState extends State<HomePage> {
       ),
 
       body: Center(
-          child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
-        child: TextField(
-          decoration: InputDecoration(
-            label: Text('Email'),
-            hintText: 'Enter your email',
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-            prefix: Icon(Icons.email_outlined),
-            suffix: IconButton(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            OutlinedButton(onPressed: () {}, child: Text('Login')),
+            const SizedBox(height: 10.0),
+            ElevatedButton.icon(
+              onPressed: () {},
+              label: Text('Signup'),
+              icon: Icon(Icons.add),
+            ),
+            const SizedBox(height: 10.0),
+            IconButton.filledTonal(
                 onPressed: () {
-                  setState(() {
-                    showPassword = !showPassword;
-                  });
+                  print('Is favorited');
                 },
-                icon: Icon(Icons.remove_red_eye)),
-            errorText: 'This field is required and can not be left as empty',
-          ),
-          obscureText: showPassword,
-          obscuringCharacter: '*',
+                icon: const Icon(
+                  Icons.favorite,
+                  color: Colors.red,
+                )),
+            const SizedBox(height: 20.0),
+            TextButton.icon(
+                onPressed: () {
+                  print('User has been registered!');
+                },
+                icon: Icon(Icons.accessibility_rounded),
+                label: const Text(
+                  'Register User',
+                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                ))
+          ],
         ),
-      )),
-
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: 'Settings'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile')
-        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print('Perform some action');
+        },
+        tooltip: 'Start chat',
+        child: Icon(Icons.message_outlined),
+        // child: Text('chat'),
       ),
     );
   }
