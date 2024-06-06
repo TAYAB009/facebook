@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+
+void main(List<String> args) {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool? value = false;
+  bool? isPython = false;
+  bool? isLLM = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Skills App'),
+        centerTitle: true,
+        backgroundColor: Colors.amber,
+      ),
+      body: Center(
+          child: Column(
+        children: [
+          CheckboxListTile(
+            value: isLLM,
+            onChanged: (newValue) {
+              setState(() {
+                isLLM = newValue;
+              });
+            },
+            title: Text('LLM'),
+            subtitle: Text('LLM with 2-years of experience is required'),
+          ),
+          CheckboxListTile(
+            value: isPython,
+            onChanged: (newValue) {
+              setState(() {
+                isPython = newValue;
+              });
+            },
+            title: Text('Python'),
+            subtitle: Text('Python with OOP is required'),
+          ),
+          CheckboxListTile(
+            value: value,
+            onChanged: (newValue) {
+              setState(() {
+                value = newValue;
+              });
+            },
+            title: Text('Flutter'),
+            subtitle:
+                Text('Flutter with Firebase and APIs integration is requierd!'),
+          ),
+        ],
+      )),
+    );
+  }
+}
